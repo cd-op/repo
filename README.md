@@ -2,7 +2,7 @@ In this repository you will find:
 
 - random, possibly reusable scripts;
 - possibly reusable configs;
-- go code, if distributing such code in go-open or go-free two modules doesn't
+- go code, if distributing such code in go-open or go-free doesn't
   make sense;
 - all code written in other languages.
 
