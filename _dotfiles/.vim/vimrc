@@ -1,0 +1,75 @@
+" basic options
+set nocompatible
+set hidden
+set noswapfile
+
+" plugins via vim-plug
+
+let g:airline_theme='minimalist'
+let g:airline#extensions#tabline#enabled = 1
+
+call plug#begin('~/.vim-plug')
+
+" ui
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf'
+
+" code
+Plug 'scrooloose/syntastic'
+Plug 'vim-scripts/commentToggle'
+Plug 'fatih/vim-go'
+
+call plug#end()
+
+" text options
+filetype indent plugin on
+syntax on
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set autoindent
+set smartindent
+
+" color UI options
+set background=dark
+set number
+set list
+set listchars=tab:↦\ ,trail:·
+set colorcolumn=79,80
+colorscheme default
+highlight LineNr ctermfg=DarkGray
+highlight NonText ctermfg=DarkGray
+highlight SpecialKey ctermfg=DarkGray
+highlight ColorColumn ctermbg=DarkGray
+set splitbelow
+set splitright
+
+" menu options (wild mode behaves like bash)
+set wildmode=longest,list
+set wildmenu
+
+" mouse/paste options
+set mouse=a
+"set paste
+"set clipboard=unnamedplus
+
+" mappings
+inoremap <C-Left> <Esc>:bprev<Return>i
+nnoremap <C-Left> <Esc>:bprev<Return>
+inoremap <C-Right> <Esc>:bnext<Return>i
+nnoremap <C-Right> <Esc>:bnext<Return>
+
+inoremap <F11> <Esc>:set spell spelllang=en<Return>i
+nnoremap <F11> <Esc>:set spell spelllang=en<Return>
+
+inoremap <F12> <Esc>:NERDTreeToggle<Return>i
+nnoremap <F12> <Esc>:NERDTreeToggle<Return>
+
+inoremap <C-Space> <Esc>:FZF<Return>i
+nnoremap <C-Space> <Esc>:FZF<Return>
