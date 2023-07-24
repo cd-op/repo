@@ -8,10 +8,12 @@ set noswapfile
 let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
 
+let g:SuperTabDefaultCompletionType = "context"
+
 call plug#begin('~/.vim-plug')
 
 " ui
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'erichain/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
@@ -19,7 +21,8 @@ Plug 'ervandew/supertab'
 Plug 'junegunn/fzf'
 
 " code
-Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
+Plug 'preservim/tagbar'
 Plug 'vim-scripts/commentToggle'
 Plug 'fatih/vim-go'
 
@@ -36,19 +39,16 @@ set smarttab
 set autoindent
 set smartindent
 
-" color UI options
+" color/UI options
+set splitbelow
+set splitright
 set background=dark
 set number
 set list
 set listchars=tab:↦\ ,trail:·
 set colorcolumn=79,80
-colorscheme default
-highlight LineNr ctermfg=DarkGray
-highlight NonText ctermfg=DarkGray
-highlight SpecialKey ctermfg=DarkGray
-highlight ColorColumn ctermbg=DarkGray
-set splitbelow
-set splitright
+set termguicolors
+colorscheme monokai_pro
 
 " menu options (wild mode behaves like bash)
 set wildmode=longest,list
@@ -65,11 +65,15 @@ nnoremap <C-Left> <Esc>:bprev<Return>
 inoremap <C-Right> <Esc>:bnext<Return>i
 nnoremap <C-Right> <Esc>:bnext<Return>
 
-inoremap <F11> <Esc>:set spell spelllang=en<Return>i
-nnoremap <F11> <Esc>:set spell spelllang=en<Return>
-
-inoremap <F12> <Esc>:NERDTreeToggle<Return>i
-nnoremap <F12> <Esc>:NERDTreeToggle<Return>
-
 inoremap <C-Space> <Esc>:FZF<Return>i
 nnoremap <C-Space> <Esc>:FZF<Return>
+
+inoremap <F1> <Esc>:TagbarToggle<Return>i
+nnoremap <F1> <Esc>:TagbarToggle<Return>
+
+inoremap <F10> <Esc>:set spell spelllang=pt<Return>i
+nnoremap <F10> <Esc>:set spell spelllang=pt<Return>
+inoremap <F11> <Esc>:set spell spelllang=en<Return>i
+nnoremap <F11> <Esc>:set spell spelllang=en<Return>
+inoremap <F12> <Esc>:set nospell<Return>i
+nnoremap <F12> <Esc>:set nospell<Return>
