@@ -12,4 +12,6 @@ licensed under different terms from the other code/configs in the repo.
 
 Index of contents:
 
-- **dotfiles**: linux configs for common programs/applications. `MIT`
+- **\_archives**: Unfinished projects, experiments, old unmaintained stuff of
+  varying quality, for reference only. Use not recommended. `MIT`
+- **\_dotfiles**: Linux configs for common programs/applications. `MIT`
