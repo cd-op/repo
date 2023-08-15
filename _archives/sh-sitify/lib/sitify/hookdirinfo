@@ -1,0 +1,5 @@
+#!/bin/sh
+
+HookDirInfo () {
+	Output "  ${DIR}"
+}

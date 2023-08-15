@@ -1,0 +1,5 @@
+#!/bin/sh
+
+HookStopInfo () {
+	Output "Done."
+}

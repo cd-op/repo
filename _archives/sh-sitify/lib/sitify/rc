@@ -1,0 +1,6 @@
+#!/bin/sh
+
+INIT_HOOKS="HookInitInfo"
+DIR_HOOKS="HookDirInfo"
+FILE_HOOKS="HookFileInfo"
+STOP_HOOKS="HookStopInfo"

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+[ ! -n "$1" ] && echo "$0: no orig dir specified" 1>&2 && exit 1
+[ ! -n "$2" ] && echo "$0: no dest dir specified" 1>&2 && exit 1
+[ ! -d "$1" ] && echo "$0: $1 is not a directory" 1>&2 && exit 1
+[ ! -d "$2" ] && echo "$0: $2 is not a directory" 1>&2 && exit 1
+
+ORIG=$(readlink -e $1)
+DEST=$(readlink -e $2)
+
+LIB_PATH="$(dirname $0)/lib/sitify"
+RC_PATH="${ORIG}/.sitify/rc"
+LS=$(which ls)
+IFS='
+'
+
+[ ! -d "${LIB_PATH}" ] && exit 1
+for i in $(${LS} -1 "${LIB_PATH}"); do
+    . "${LIB_PATH}/${i}"
+done
+[ -f "${RC_PATH}" ] && . "${RC_PATH}"
+
+RecurseDir () {
+	PushDir "$1" 2>&1 >/dev/null
+
+	DIR=$(echo -n "$(pwd)" | sed "s?^${ORIG}??")/
+
+    for i in ${DIR_HOOKS}; do "${i}"; done
+
+	for i in $(${LS} -1); do
+		FILE="${i}"
+        [ ! -d "${i}" ] && for j in ${FILE_HOOKS}; do
+            "${j}" "$(pwd)/${i}" "${CURR_DEST}/${i}"
+        done
+    done
+
+	for i in $(${LS} -1); do
+        [ -d "${i}" ] && RecurseDir "${i}"
+    done
+
+	PopDir 2>&1 >/dev/null
+}
+
+for i in ${INIT_HOOKS}; do "${i}"; done
+RecurseDir "${ORIG}"
+for i in ${STOP_HOOKS}; do "${i}"; done
+
+unset IFS
+

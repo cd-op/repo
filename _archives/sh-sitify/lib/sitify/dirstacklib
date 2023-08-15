@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# This small library implements basic functionallity similar to pushd and
+# popd found in bash, for those shells that do not provide it
+# The names are different so it works on the shells that provide it as well
+# without any conflict
+
+__DIRSTACK=""
+
+PushDir () {
+	[ ! -d "$1" ] && echo "pushd: not a directory: '$1'" 1>&2 && return 1
+	[ ! -x "$1" ] && echo "pushd: cannot chdir to: '$1'" 1>&2 && return 1
+
+	__DIRSTACK=$(pwd)"
+${__DIRSTACK}" &&
+	cd "$1" &&
+	return 0
+}
+
+PopDir () {
+	[ ! -n "${__DIRSTACK}" ] && echo "popd: directory stack is empty" 1>&2 && return 1
+
+	__OLDIR=$(echo -n "${__DIRSTACK}" | head -n 1 | tr -d '\n\r') &&
+	__DIRSTACK=$(echo -n "${__DIRSTACK}" | tail -n +2) &&
+	cd "${__OLDIR}" &&
+	return 0
+}

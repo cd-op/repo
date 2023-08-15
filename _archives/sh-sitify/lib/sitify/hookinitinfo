@@ -1,0 +1,6 @@
+#!/bin/sh
+
+HookInitInfo () {
+	Output "Sitifying: ${ORIG}"
+	Output "       to: ${DEST}"
+}

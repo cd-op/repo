@@ -1,0 +1,5 @@
+#!/bin/sh
+
+Output () {
+    echo "$*" 1>&2
+}

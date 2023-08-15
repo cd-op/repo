@@ -14,4 +14,8 @@ Index of contents:
 
 - **\_archives**: Unfinished projects, experiments, old unmaintained stuff of
   varying quality, for reference only. Use not recommended. `MIT`
+  - make-picolin: minimal busybox+linux initramfs.
+  - nodejs-dire: requires a directory of other node modules.
+  - sh-sitify: shell based site/directory processor.
+  - vim-tutorial: tutorial made for NEECT's GeekTalk of Nov 19, 2012.
 - **\_dotfiles**: Linux configs for common programs/applications. `MIT`
