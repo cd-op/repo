@@ -1,0 +1,91 @@
+# i3 config file (v4)
+
+# keyboard / mouse ##################################
+
+set $mod Mod4
+
+focus_follows_mouse yes
+tiling_drag         modifier titlebar
+floating_modifier   $mod
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+bindsym $mod+Shift+1 move window to workspace 1
+bindsym $mod+Shift+2 move window to workspace 2
+bindsym $mod+Shift+3 move window to workspace 3
+bindsym $mod+Shift+4 move window to workspace 4
+bindsym $mod+Shift+5 move window to workspace 5
+bindsym $mod+Shift+6 move window to workspace 6
+bindsym $mod+Shift+7 move window to workspace 7
+bindsym $mod+Shift+8 move window to workspace 8
+
+bindsym Mod1+Tab focus next
+
+bindsym $mod+f   floating toggle
+bindsym $mod+t   layout tabbed
+bindsym $mod+h   layout splith
+bindsym $mod+v   layout splitv
+
+bindsym $mod+Shift+h   split h
+bindsym $mod+Shift+v   split v
+
+bindsym $mod+BackSpace   exec --no-startup-id pkill -USR1 dashboard
+bindsym Mod1+space       exec --no-startup-id alacritty
+
+# look / feel #######################################
+
+gaps                inner 8px
+gaps                horizontal 290px
+smart_gaps          inverse_outer
+smart_borders       on
+title_align         center
+
+for_window [class="^.*"] border normal 1
+for_window [class="^guvcview"] border none
+for_window [workspace="^8$"] floating enable
+
+set $gray1 #323232
+set $gray2 #3c3c3c
+set $gray3 #747474
+
+set $prim1 #749b3e
+set $prim2 #a6c879
+set $prim3 #d5e5be
+
+client.focused           $prim2 $prim1 $prim3 $prim2 $prim2
+client.urgent            $prim2 $prim1 $prim3 $prim2 $prim2
+client.unfocused         $gray2 $gray1 $gray3 $gray2 $gray2
+client.focused_inactive  $gray2 $gray1 $gray3 $gray2 $gray2
+client.placeholder       $gray2 $gray1 $gray3 $gray2 $gray2
+client.background        $gray2
+
+font pango:Deja Vu Sans Bold 11
+
+# bar ###############################################
+
+bar {
+  i3bar_command i3bar
+
+  position bottom
+  mode     hide
+
+  workspace_min_width 80
+
+  font pango:Deja Vu Sans Bold 36
+  colors {
+    background $gray1
+    statusline $gray3
+    separator  $gray3
+
+    inactive_workspace $gray1 $gray1 $gray3
+    focused_workspace  $gray3 $gray3 $gray1
+    urgent_workspace   $gray1 $gray1 $prim2
+  }
+}
