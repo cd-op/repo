@@ -10,6 +10,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:SuperTabDefaultCompletionType = "context"
 
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+
 call plug#begin('~/.vim-plug')
 
 " ui
@@ -24,7 +27,9 @@ Plug 'junegunn/fzf'
 Plug 'dense-analysis/ale'
 Plug 'preservim/tagbar'
 Plug 'vim-scripts/commentToggle'
-Plug 'fatih/vim-go'
+
+" other
+Plug 'freitass/todo.txt-vim'
 
 call plug#end()
 
@@ -59,6 +64,8 @@ set mouse=a
 "set paste
 "set clipboard=unnamedplus
 
+" set spell spelllang=en
+
 " mappings
 inoremap <C-Left> <Esc>:bprev<Return>i
 nnoremap <C-Left> <Esc>:bprev<Return>
@@ -67,6 +74,9 @@ nnoremap <C-Right> <Esc>:bnext<Return>
 
 inoremap <C-Space> <Esc>:FZF<Return>i
 nnoremap <C-Space> <Esc>:FZF<Return>
+
+inoremap <C-LeftMouse> <Esc>:ALEGoToDefinition<Return>i
+nnoremap <C-LeftMouse> <Esc>:ALEGoToDefinition<Return>
 
 inoremap <F1> <Esc>:TagbarToggle<Return>i
 nnoremap <F1> <Esc>:TagbarToggle<Return>
