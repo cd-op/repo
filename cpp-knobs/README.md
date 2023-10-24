@@ -24,7 +24,7 @@ flexibility.
 
 As an example, here's my one of my configs for knobs:
 
-![doc/img/screenshot.png]
+![screenshot](doc/img/screenshot.png)
 
 ## Dependencies
 
