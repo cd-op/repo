@@ -19,3 +19,5 @@ Index of contents:
   - sh-sitify: shell based site/directory processor.
   - vim-tutorial: tutorial made for NEECT's GeekTalk of Nov 19, 2012.
 - **\_dotfiles**: Linux configs for common programs/applications. `MIT`
+- **cpp-knobs**: a C++/gtkmm framework for writing custom dashboards/launchers
+  for Linux `AGPL-3.0`

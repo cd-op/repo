@@ -1,0 +1,12 @@
+--style=1tbs
+--break-blocks
+--keep-one-line-blocks
+--indent-modifiers
+--squeeze-lines=2
+--squeeze-ws
+--pad-comma
+--unpad-paren
+--max-code-length=120
+--indent-continuation=1
+--align-pointer=middle
+--align-reference=middle
