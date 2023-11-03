@@ -1,15 +1,16 @@
 # knobs
 
-A framework for creating custom dashboards and launchers for Linux. Works under
-X11, should work under Wayland (but that is not tested).
+A framework for creating custom dashboards and launchers for Linux/X11. Should
+also work under Wayland but it hasn't been tested with it.
 
-**Warning: knobs is, at best, beta quality software. I use it everyday as my
+**Warning: knobs is beta quality software. I use it everyday as my
 only launcher and dashboard, but some features are missing and there might be
-edge cases that my usage pattern hasn't yet bumped into.**
+edge cases that my usage pattern hasn't yet bumped into. The API for the UI
+components may change without notice.**
 
 ## Why?
 
-Most launchers Linux launchers do not fit my use case. They're either too
+Most Linux launchers do not fit my use case. They're either too
 complicated and bloated, or they are too simplistic and lack features and
 flexibility.
 
@@ -38,7 +39,7 @@ On Arch or derivatives, the necessary development libraries are (as given by
 cairo
 cairo-gobject
 cairomm-1.16
-gdk\_pixbuf-2.0
+gdk_pixbuf-2.0
 gio-2.0
 giomm-2.68
 glib-2.0
@@ -62,6 +63,21 @@ a framework. Right after cloning the repo, `make` will fail. This is expected.
 knobs is configured via a config.hpp (like dwm). An example config.def.hpp is
 provided for suggestions and examples for how to make your own dashboards. Use
 the examples to build your own dashboard or launcher according to your needs.
+
+Once you have your config.h ready, just compile your dashboard with `make`.
+Optionally move the `knobs` binary to a directory in your path.
+
+`knobs` should be started when your window manager/desktop environment/Wayland
+compositor starts, and is not supposed to terminate until your session does.
+
+## Summoning/dismissing
+
+In the example config provided, summoning/dismissing is done by sending a
+signal to the running program. There are more robust (but also more complex)
+options to cause the program to bring up or hide the window, and the user is
+encouraged to seek such alternatives. In any case, the idea is of course that
+pressing a certain key combination will bring up the dashboard (which should
+already be running).
 
 ## Quick widget reference
 

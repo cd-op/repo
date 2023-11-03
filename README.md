@@ -13,11 +13,13 @@ licensed under different terms from the other code/configs in the repo.
 Index of contents:
 
 - **\_archives**: Unfinished projects, experiments, old unmaintained stuff of
-  varying quality, for reference only. Use not recommended. `MIT`
-  - make-picolin: minimal busybox+linux initramfs.
-  - nodejs-dire: requires a directory of other node modules.
-  - sh-sitify: shell based site/directory processor.
-  - vim-tutorial: tutorial made for NEECT's GeekTalk of Nov 19, 2012.
+  varying quality, for reference only. Use not recommended.
+  - go-prototype-dashboard: the precursor to knobs, in Go+GTK3; use knobs
+    instead `AGPL-3.0`
+  - make-picolin: minimal busybox+linux initramfs. `MIT`
+  - nodejs-dire: requires a directory of other node modules. `MIT`
+  - sh-sitify: shell based site/directory processor. `MIT`
+  - vim-tutorial: tutorial made for NEECT's GeekTalk of Nov 19, 2012. `MIT`
 - **\_dotfiles**: Linux configs for common programs/applications. `MIT`
 - **cpp-knobs**: a C++/gtkmm framework for writing custom dashboards/launchers
-  for Linux `AGPL-3.0`
+  for Linux. `AGPL-3.0`
