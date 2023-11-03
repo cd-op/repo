@@ -36,7 +36,7 @@ bindsym $mod+v   layout splitv
 bindsym $mod+Shift+h   split h
 bindsym $mod+Shift+v   split v
 
-bindsym $mod+BackSpace   exec --no-startup-id pkill -USR1 dashboard
+bindsym $mod+BackSpace   exec --no-startup-id pkill -USR1 knobs
 bindsym Mod1+space       exec --no-startup-id alacritty
 
 # look / feel #######################################

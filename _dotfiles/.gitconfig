@@ -1,0 +1,9 @@
+[user]
+	name = Davide
+	email = vcs@cdop.pt
+[push]
+	default = current
+[core]
+	editor = nvim
+[color]
+	ui = auto
