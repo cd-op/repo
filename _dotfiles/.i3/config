@@ -41,8 +41,8 @@ bindsym Mod1+space       exec --no-startup-id alacritty
 
 # look / feel #######################################
 
-gaps                inner 8px
-gaps                horizontal 290px
+gaps                inner 2px
+gaps                horizontal 320px
 smart_gaps          inverse_outer
 smart_borders       on
 title_align         center
@@ -51,6 +51,7 @@ for_window [class="^.*"] border normal 1
 for_window [class="^guvcview"] border none
 for_window [workspace="^8$"] floating enable
 
+set $gray0 #000000
 set $gray1 #323232
 set $gray2 #3c3c3c
 set $gray3 #747474
@@ -73,19 +74,16 @@ font pango:Deja Vu Sans Bold 11
 bar {
   i3bar_command i3bar
 
-  position bottom
-  mode     hide
+  font                pango:Deja Vu Sans Bold 11
+  workspace_min_width 28
 
-  workspace_min_width 80
-
-  font pango:Deja Vu Sans Bold 36
   colors {
-    background $gray1
+    background $gray0
     statusline $gray3
     separator  $gray3
 
-    inactive_workspace $gray1 $gray1 $gray3
-    focused_workspace  $gray3 $gray3 $gray1
-    urgent_workspace   $gray1 $gray1 $prim2
+    inactive_workspace $gray0 $gray0 $gray2
+    focused_workspace  $gray0 $gray0 $gray3
+    urgent_workspace   $gray0 $gray0 $prim2
   }
 }
