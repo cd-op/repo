@@ -28,9 +28,6 @@ Plug 'dense-analysis/ale'
 Plug 'preservim/tagbar'
 Plug 'vim-scripts/commentToggle'
 
-" other
-Plug 'freitass/todo.txt-vim'
-
 call plug#end()
 
 " text options
