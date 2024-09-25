@@ -19,6 +19,9 @@ Index of contents:
   - make-picolin: minimal busybox+linux initramfs. `MIT`
   - nodejs-dire: requires a directory of other node modules. `MIT`
   - sh-sitify: shell based site/directory processor. `MIT`
+  - vim-legacy-config: scaffolding/remnants of old (neo)vim configs, built
+    around vim-plug and focusing on portability across vim/Linux distributions;
+    see current neovim-only configs under _dotfiles/.config/nvim `MIT`
   - vim-tutorial: tutorial made for NEECT's GeekTalk of Nov 19, 2012. `MIT`
 - **\_dotfiles**: Linux configs for common programs/applications. `MIT`
 - **cpp-knobs**: a C++/gtkmm framework for writing custom dashboards/launchers
