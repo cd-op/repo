@@ -1,126 +1,143 @@
+local cmd, g, o = vim.cmd, vim.g, vim.o
+
 -- text/code options
-vim.o.hidden = true
-vim.o.swapfile = false
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.smarttab = true
-vim.o.autoindent = true
-vim.o.smartindent = true
-vim.cmd[[filetype indent plugin on]]
-vim.cmd[[syntax on]]
+o.hidden = true
+o.swapfile = false
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.expandtab = true
+o.smarttab = true
+o.autoindent = true
+o.smartindent = true
+cmd.filetype({ args = { "plugin", "indent", "on" } })
+cmd.syntax("on")
 
 -- color/UI options
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.background = "dark"
-vim.o.number = true
-vim.o.list = true
-vim.o.listchars = "tab:↦ ,trail:·"
-vim.o.colorcolumn = "79,80"
-vim.o.termguicolors = true
-vim.cmd[[colorscheme monokai_pro]]
+o.splitbelow = true
+o.splitright = true
+o.background = "dark"
+o.number = true
+o.list = true
+o.listchars = "tab:↦ ,trail:·"
+o.colorcolumn = "79,80,99,100,119,120"
+o.termguicolors = true
+cmd.colorscheme("monokai_pro")
 
 -- menu options (wild mode behaves like bash)
-vim.o.wildmode = "longest,list"
-vim.o.wildmenu = true
+o.wildmode = "longest,list"
+o.wildmenu = true
 
--- todo: double check these
--- mouse/paste options
--- vim.o.mouse = "a"
--- set paste
--- set clipboard=unnamedplus
--- set spell spelllang=en
+-- globals
+g.mapleader = ","
+g.maplocalleader = ","
 
--- variables
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-
--- mappings
-vim.cmd[[
-inoremap <C-Left> <Esc>:bprev<Return>i
-nnoremap <C-Left> <Esc>:bprev<Return>
-inoremap <C-Right> <Esc>:bnext<Return>i
-nnoremap <C-Right> <Esc>:bnext<Return>
-
-inoremap <C-Space> <Esc>:FZF<Return>i
-nnoremap <C-Space> <Esc>:FZF<Return>
-
-inoremap <C-LeftMouse> <Esc>:ALEGoToDefinition<Return>i
-nnoremap <C-LeftMouse> <Esc>:ALEGoToDefinition<Return>
-
-inoremap <F1> <Esc>:TagbarToggle<Return>i
-nnoremap <F1> <Esc>:TagbarToggle<Return>
-
-inoremap <F10> <Esc>:set spell spelllang=pt<Return>i
-nnoremap <F10> <Esc>:set spell spelllang=pt<Return>
-inoremap <F11> <Esc>:set spell spelllang=en<Return>i
-nnoremap <F11> <Esc>:set spell spelllang=en<Return>
-inoremap <F12> <Esc>:set nospell<Return>i
-nnoremap <F12> <Esc>:set nospell<Return>
-]]
-
--- pckr bootstrap and plugins
-local function bootstrap_pckr()
-  local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
-
-  if not (vim.uv or vim.loop).fs_stat(pckr_path) then
-    vim.fn.system({
-      'git',
-      'clone',
-      "--filter=blob:none",
-      'https://github.com/lewis6991/pckr.nvim',
-      pckr_path
-    })
-  end
-
-  vim.opt.rtp:prepend(pckr_path)
+-- key bindings
+local function imap(l, r)
+	vim.keymap.set("i", l, r .. "i", { noremap = true })
 end
 
-bootstrap_pckr()
+local function nmap(l, r)
+	vim.keymap.set("n", l, r, { noremap = true })
+end
 
-require('pckr').add{
-  -- ui
-  'erichain/vim-monokai-pro',
+local function inmap(l, r)
+	imap(l, r)
+	nmap(l, r)
+end
 
-  {'ervandew/supertab', config_pre = function ()
-    vim.g.SuperTabDefaultCompletionType = "context"
-  end},
+inmap("<C-Left>", "<Esc>:bprev<Return>")
+inmap("<C-Right>", "<Esc>:bnext<Return>")
+inmap("<C-Space>", "<Esc>:FZF<Return>")
+inmap("<C-LeftMouse>", "<Esc>:ALEGoToDefinition<Return>")
+inmap("<F1>", "<Esc>:TagbarToggle<Return>")
 
-  'junegunn/fzf',
+nmap("<Leader>slen", "<Esc>:set spell spelllang=en<Return>")
+nmap("<Leader>slpt", "<Esc>:set spell spelllang=pt<Return>")
+nmap("<Leader>sl0", "<Esc>:set nospell<Return>")
 
-  {"stevearc/oil.nvim", config = function()
-      require("oil").setup()
-  end},
+nmap("<Up>", "")
+nmap("<Down>", "")
+nmap("<Left>", "")
+nmap("<Right>", "")
 
-  'vim-airline/vim-airline-themes',
+-- mkdir -p .local/share/nvim/pckr
+-- cd .local/share/nvim/pckr
+-- git clone filter=blob:none https://github.com/lewis6991/pckr.nvim
+vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/pckr/pckr.nvim")
+require("pckr").add({
+	-- ui
+	"erichain/vim-monokai-pro",
 
-  {'vim-airline/vim-airline', config_pre = function ()
-    vim.g.airline_theme = 'minimalist'
-    vim.g['airline#extensions#tabline#enabled'] = 1
-  end},
+	{
+		"ervandew/supertab",
+		config_pre = function()
+			g.SuperTabDefaultCompletionType = "context"
+		end,
+	},
 
-  -- code
-  'airblade/vim-gitgutter',
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			nmap("s", "<Plug>(leap)")
+		end,
+	},
 
-  {'dense-analysis/ale', config_pre = function ()
-    vim.g.ale_completion_enabled = 1
-    vim.g.ale_fix_on_save = 1
-  end},
+	"junegunn/fzf",
 
-  {'numToStr/Comment.nvim', config = function()
-        require('Comment').setup()
-  end},
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	},
 
-  'nvim-treesitter/nvim-treesitter',
-  'preservim/tagbar',
+	"vim-airline/vim-airline-themes",
 
-  -- orgmode
-  { 'nvim-orgmode/orgmode', config = function()
-    require('orgmode').setup({
-      org_agenda_files = '~/x/plans/notes.orgmode.d/**/*',
-      org_default_notes_file = '~/x/plans/notes.orgmode.d/inbox-desktop.org',
-    })
-  end}
-}
+	{
+		"vim-airline/vim-airline",
+		config_pre = function()
+			g.airline_theme = "minimalist"
+			g["airline#extensions#tabline#enabled"] = 1
+		end,
+	},
+
+	-- code
+	"airblade/vim-gitgutter",
+
+	{
+		"dense-analysis/ale",
+		config_pre = function()
+			g.ale_completion_enabled = 1
+			g.ale_fix_on_save = 1
+		end,
+	},
+
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	},
+
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("lspconfig").gopls.setup({ settings = { gopls = { gofumpt = true } } })
+		end,
+	},
+
+	"nvim-treesitter/nvim-treesitter",
+	"preservim/tagbar",
+
+	-- orgmode
+	{
+		"nvim-orgmode/orgmode",
+		config = function()
+			require("orgmode").setup({
+				org_agenda_files = "~/x/plans/notes.orgmode.d/**/*",
+				org_default_notes_file = "~/x/plans/notes.orgmode.d/inboxes/desktop.org",
+			})
+		end,
+	},
+})
