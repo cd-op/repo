@@ -22,7 +22,6 @@ o.list = true
 o.listchars = "tab:↦ ,trail:·"
 o.colorcolumn = "79,80,99,100,119,120"
 o.termguicolors = true
-cmd.colorscheme("monokai_pro")
 
 -- menu options (wild mode behaves like bash)
 o.wildmode = "longest,list"
@@ -61,13 +60,51 @@ nmap("<Down>", "")
 nmap("<Left>", "")
 nmap("<Right>", "")
 
+imap([["]], [[""<Esc>]])
+imap([[']], [[''<Esc>]])
+imap("(", "()<Esc>")
+imap("{", "{}<Esc>")
+imap("[", "[]<Esc>")
+
+for _, x in ipairs({
+	{
+		"dtz",
+		[[<Esc>mz:read !date --utc +"\%FT\%R:\%SZ"|tr -d "\n"<Return>d$`zpea]],
+	},
+}) do
+	cmd.inoreabbrev({ args = x })
+end
+
 -- mkdir -p .local/share/nvim/pckr
 -- cd .local/share/nvim/pckr
 -- git clone filter=blob:none https://github.com/lewis6991/pckr.nvim
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/pckr/pckr.nvim")
 require("pckr").add({
 	-- ui
-	"erichain/vim-monokai-pro",
+	{
+		"HoNamDuong/hybrid.nvim",
+		config = function()
+			cmd.colorscheme("hybrid")
+		end,
+	},
+	-- {
+	-- 	"sainnhe/sonokai",
+	-- 	config = function()
+	-- 		g.sonokai_style = "default"
+	-- 		g.sonokai_better_performance = 1
+	-- 		g.sonokai_colors_override = {
+	-- 			bg_dim = { "#232323", "233" },
+	-- 			bg0 = { "#2e2e2e", "234" },
+	-- 			bg1 = { "#353535", "235" },
+	-- 			bg2 = { "#393939", "236" },
+	-- 			bg3 = { "#3e3e3e", "237" },
+	-- 			bg4 = { "#454545", "237" },
+	-- 			grey = { "#848484", "246" },
+	-- 			grey_dim = { "#5f5f5f", "240" },
+	-- 		}
+	-- 		cmd.colorscheme("sonokai")
+	-- 	end,
+	-- },
 
 	{
 		"ervandew/supertab",
@@ -84,14 +121,6 @@ require("pckr").add({
 	},
 
 	"junegunn/fzf",
-
-	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-		end,
-	},
-
 	"vim-airline/vim-airline-themes",
 
 	{
@@ -130,14 +159,12 @@ require("pckr").add({
 	"nvim-treesitter/nvim-treesitter",
 	"preservim/tagbar",
 
-	-- orgmode
+	-- markdown
 	{
-		"nvim-orgmode/orgmode",
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
 		config = function()
-			require("orgmode").setup({
-				org_agenda_files = "~/x/plans/notes.orgmode.d/**/*",
-				org_default_notes_file = "~/x/plans/notes.orgmode.d/inboxes/desktop.org",
-			})
+			require("render-markdown").setup({})
 		end,
 	},
 })

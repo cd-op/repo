@@ -1,0 +1,21 @@
+theme = "Hybrid"
+
+font-size = 12
+
+font-family = ""
+font-family = "DejaVuSansM Nerd Font Mono"
+font-style = "Regular"
+
+font-family-bold = ""
+font-family-bold = "DejaVuSansM Nerd Font Mono"
+font-style-bold = "Bold"
+
+font-family-italic = ""
+font-family-italic = "DejaVuSansM Nerd Font Mono"
+font-style-italic = "Oblique"
+
+font-family-bold-italic = ""
+font-family-bold-italic = "DejaVuSansM Nerd Font Mono"
+font-style-bold-italic = "Bold Oblique"
+
+window-decoration = none

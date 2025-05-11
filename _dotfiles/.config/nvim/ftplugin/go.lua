@@ -33,13 +33,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+-- the lsp setup for gopls breaks ALEGoToDefinition
+-- use same functionality from the lsp instead
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true })
+vim.keymap.set("n", "<C-LeftMouse>", vim.lsp.buf.definition, { noremap = true })
+vim.keymap.set("i", "<C-LeftMouse>", vim.lsp.buf.definition, { noremap = true })
+
 for _, x in ipairs({
-	-- { "stru", [[type struct{<CR>i int<CR>}<Esc>2k_4li]] },
-	-- { "iface", [[type interface{<CR>A() *A<CR>}<Esc>2k_4li]] },
 	{ "stru", [[<Esc>bitype <Esc>Astruct{<CR>}<Esc>O]] },
 	{ "iface", [[<Esc>bitype <Esc>Ainterface{<CR>}<Esc>O]] },
-	-- { "func", [[func() {<CR>return<CR>}<Esc>2k_4li]] },
 	{ "func", [[<Esc>bifunc <Esc>A( xw )  {<CR>}<Esc>k$Txciw]] },
+	{ "tfunc", [[<Esc>bifunc Test<Esc>A(t* testing.T)  {<CR>}<Esc>O]] },
 	{ "fn", [[func(){ xw }<Esc>Txciw]] },
 	{ "enil", [[if err != nil {<CR>}<Esc>O]] },
 	{
