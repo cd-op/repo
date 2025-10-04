@@ -1,4 +1,11 @@
-local cmd, g, o = vim.cmd, vim.g, vim.o
+local vim = vim -- luacheck: ignore
+
+local g = vim.g
+local o = vim.o
+
+local cmd = vim.cmd
+local keymap = vim.keymap
+local lsp = vim.lsp
 
 -- text/code options
 o.hidden = true
@@ -33,11 +40,11 @@ g.maplocalleader = ","
 
 -- key bindings
 local function imap(l, r)
-	vim.keymap.set("i", l, r .. "i", { noremap = true })
+	keymap.set("i", l, r .. "i", { noremap = true })
 end
 
 local function nmap(l, r)
-	vim.keymap.set("n", l, r, { noremap = true })
+	keymap.set("n", l, r, { noremap = true })
 end
 
 local function inmap(l, r)
@@ -87,24 +94,6 @@ require("pckr").add({
 			cmd.colorscheme("hybrid")
 		end,
 	},
-	-- {
-	-- 	"sainnhe/sonokai",
-	-- 	config = function()
-	-- 		g.sonokai_style = "default"
-	-- 		g.sonokai_better_performance = 1
-	-- 		g.sonokai_colors_override = {
-	-- 			bg_dim = { "#232323", "233" },
-	-- 			bg0 = { "#2e2e2e", "234" },
-	-- 			bg1 = { "#353535", "235" },
-	-- 			bg2 = { "#393939", "236" },
-	-- 			bg3 = { "#3e3e3e", "237" },
-	-- 			bg4 = { "#454545", "237" },
-	-- 			grey = { "#848484", "246" },
-	-- 			grey_dim = { "#5f5f5f", "240" },
-	-- 		}
-	-- 		cmd.colorscheme("sonokai")
-	-- 	end,
-	-- },
 
 	{
 		"ervandew/supertab",
@@ -152,7 +141,8 @@ require("pckr").add({
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("lspconfig").gopls.setup({ settings = { gopls = { gofumpt = true } } })
+			lsp.enable("gopls")
+			lsp.config("gopls", { gofumpt = true })
 		end,
 	},
 
