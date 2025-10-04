@@ -141,8 +141,13 @@ require("pckr").add({
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			lsp.enable("gopls")
-			lsp.config("gopls", { gofumpt = true })
+			lsp.config("gopls", {
+				gofumpt = true,
+			})
+
+			lsp.config("lua_ls", {})
+
+			lsp.enable({ "gopls", "lua_ls" })
 		end,
 	},
 
