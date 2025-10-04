@@ -18,4 +18,9 @@ font-family-bold-italic = ""
 font-family-bold-italic = "DejaVuSansM Nerd Font Mono"
 font-style-bold-italic = "Bold Oblique"
 
-window-decoration = none
+window-decoration = server
+
+window-padding-balance = false
+window-padding-color = background
+window-padding-x = 6
+window-padding-y = 6
