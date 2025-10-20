@@ -1,0 +1,50 @@
+#### custom PS1
+export PS1='\[\e[0;32m\]• `ash_ps1`⯈\[\e[0m\] '
+
+ash_ps1() {
+  local GIT_CURRENT_COMMIT="`git rev-parse --short HEAD 2>/dev/null`"
+  [ "${GIT_CURRENT_COMMIT}" != "" ] &&
+    printf '%s %s (%s:%s)' \
+      "`ash_ps1_now`" "`ash_ps1_pwd_git`" \
+      "`ash_ps1_git_ref`" "${GIT_CURRENT_COMMIT}" ||
+    printf '%s %s ' \
+      "`ash_ps1_now`" "`ash_ps1_pwd`"
+}
+
+ash_ps1_now() {
+  date +%R
+}
+
+ash_ps1_pwd_git() {
+  basename `pwd`
+}
+
+ash_ps1_git_ref() {
+  git symbolic-ref --short -q HEAD || git describe --tags --exact-match
+}
+
+ash_ps1_pwd() {
+  [ "${HOME}" = "`pwd`" ] && printf '~' || pwd | sed 's_\([^/]\)[^/]*/_\1/_g'
+}
+#### end (custom PS1)
+
+# aliases
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -lah'
+alias vim='nvim'
+
+# data volume
+export DATAFS_ROOT="/vol/datafs"
+
+# golang
+export GOPATH="${DATAFS_ROOT}/go/default/path"
+export GOCACHE="${DATAFS_ROOT}/go/default/cache"
+export GOENV="${DATAFS_ROOT}/go/default/env"
+export GOPROXY=direct
+export GOSUMDB=off
+
+# path
+export PATH="${DATAFS_ROOT}/x/local/appbin:${DATAFS_ROOT}/x/share/appbin:${GOPATH}/bin:${PATH}"
+
+# fzf
+export FZF_DEFAULT_COMMAND='find . -type f'
