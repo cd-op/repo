@@ -1,14 +1,16 @@
 #### custom PS1
-export PS1='\[\e[0;32m\]• `ash_ps1`⯈\[\e[0m\] '
+export PS1='`ash_ps1`'
 
 ash_ps1() {
+  printf '\e[0;32m• '
   local GIT_CURRENT_COMMIT="`git rev-parse --short HEAD 2>/dev/null`"
   [ "${GIT_CURRENT_COMMIT}" != "" ] &&
     printf '%s %s (%s:%s)' \
       "`ash_ps1_now`" "`ash_ps1_pwd_git`" \
-      "`ash_ps1_git_ref`" "${GIT_CURRENT_COMMIT}" ||
+      "`ash_ps1_git_ref 2>/dev/null`" "${GIT_CURRENT_COMMIT}" ||
     printf '%s %s ' \
       "`ash_ps1_now`" "`ash_ps1_pwd`"
+  printf '⯈\e[0m '
 }
 
 ash_ps1_now() {
