@@ -1,0 +1,36 @@
+{
+  "plugins": {
+    "fzf-lua": {
+      "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "hybrid.nvim": {
+      "rev": "0eafd5f0e1223073bdc7c02aedfd85bff029aa5c",
+      "src": "https://github.com/HoNamDuong/hybrid.nvim"
+    },
+    "leap.nvim": {
+      "rev": "b41c342a67d0fb36694c506ca369761dd5b60b6c",
+      "src": "https://codeberg.org/andyg/leap.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "51dbf5359da86721662c87ca10eb73add973737b",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "render-markdown.nvim": {
+      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "supertab": {
+      "rev": "8705ae0e43b34339c06328fa6dab24ecaf21aab6",
+      "src": "https://github.com/ervandew/supertab"
+    },
+    "vim-gitgutter": {
+      "rev": "90b75207bd9b55d8ac4af15f72b4e935462014d0",
+      "src": "https://github.com/airblade/vim-gitgutter"
+    }
+  }
+}
