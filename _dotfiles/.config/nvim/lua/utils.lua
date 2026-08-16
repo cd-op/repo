@@ -22,10 +22,16 @@ local function inmap(l, r)
 	nmap(l, r)
 end
 
+local function iabbr(abb, exp)
+	vim.cmd.inoreabbrev({ args = { abb, exp } })
+end
+
 return {
 	missing_progs = missing_progs,
 
 	imap = imap,
 	inmap = inmap,
 	nmap = nmap,
+
+	iabbr = iabbr,
 }

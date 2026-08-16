@@ -49,9 +49,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 
-for _, x in ipairs({
-	{ "func", [[function()<CR>return<CR>end<Esc>2k_$hi]] },
-	{ "fn", [[function () end<Esc>3hi]] },
-}) do
-	vim.cmd.inoreabbrev({ args = x })
-end
+local iabbr = utils.iabbr
+
+iabbr("func", [[function()<CR>return<CR>end<Esc>2k_$hi]])
+iabbr("fn", [[function () end<Esc>3hi]])

@@ -44,6 +44,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+vim.opt.expandtab = false
+
 local nmap = utils.nmap
 
 nmap("gd", vim.lsp.buf.definition)
@@ -51,17 +53,12 @@ nmap("gD", vim.lsp.buf.declaration)
 nmap("gr", vim.lsp.buf.references)
 nmap("gi", vim.lsp.buf.implementation)
 
-for _, x in ipairs({
-	{ "stru", [[<Esc>bitype <Esc>Astruct{<CR>}<Esc>O]] },
-	{ "iface", [[<Esc>bitype <Esc>Ainterface{<CR>}<Esc>O]] },
-	{ "func", [[<Esc>bifunc <Esc>A( xw )  {<CR>}<Esc>k$Txciw]] },
-	{ "tfunc", [[<Esc>bifunc Test<Esc>A(t* testing.T)  {<CR>}<Esc>O]] },
-	{ "fn", [[func(){ xw }<Esc>Txciw]] },
-	{ "enil", [[if err != nil {<CR>}<Esc>O]] },
-	{
-		"gomain",
-		[[package main<CR><CR>import (<CR>"fmt"<CR>)<CR><CR>func main() {<CR>fmt.Println("Hello!")<CR>}<Esc>O]],
-	},
-}) do
-	vim.cmd.inoreabbrev({ args = x })
-end
+local iabbr = utils.iabbr
+
+iabbr("stru", [[<Esc>bitype <Esc>Astruct{<CR>}<Esc>O]])
+iabbr("iface", [[<Esc>bitype <Esc>Ainterface{<CR>}<Esc>O]])
+iabbr("func", [[<Esc>bifunc <Esc>A( xw )  {<CR>}<Esc>k$Txciw]])
+iabbr("tfunc", [[<Esc>bifunc Test<Esc>A(t* testing.T)  {<CR>}<Esc>O]])
+iabbr("fn", [[func(){ xw }<Esc>Txciw]])
+iabbr("enil", [[if err != nil {<CR>}<Esc>O]])
+iabbr("gomain", [[package main<CR><CR>import (<CR>"fmt"<CR>)<CR><CR>func main() {<CR>fmt.Println("Hello!")<CR>}<Esc>O]])
